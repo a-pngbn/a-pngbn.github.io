@@ -32,13 +32,7 @@
                 margin-top: 5vh;
                 font-size: 100px;
                 text-align: center;
-            }
-            
-            h4 {
-                margin-top: 1.5vh;
-                font-size: 25px;
-                text-align: center;
-            }
+	    }
             
             .Type {
                 display: inline-block;
@@ -93,33 +87,80 @@
                 margin-top: 1.5vh;
                 font-size: 30px;
             }
+		
+	    .right{
+               text-align: right; 
+            }
+            
+            #wordsubmit1 {
+                background-color: transparent; 
+                border:none;
+            }
+            
+            #wordsubmit1:hover {
+                background-color: #FAFAFA; 
+                opacity: 0.5;
+            }
+            
+            #wordsubmit2 {
+                background-color: transparent; 
+                border:none;
+            }
+            
+            #wordsubmit2:hover {
+                background-color: #FAFAFA; 
+                opacity: 0.5;
+            }
+            
+            #wordsubmit3 {
+                background-color: transparent; 
+                border:none;
+            }
+            
+            #wordsubmit3:hover {
+                background-color: #FAFAFA; 
+                opacity: 0.5;
+            }
+            
+            #wordsubmit4 {
+                background-color: transparent; 
+                border:none;
+            }
+            
+            #wordsubmit4:hover {
+                background-color: #FAFAFA; 
+                opacity: 0.5;
+            }
 
         </style>
     </head>
     
     <body>
-        <h1> Mini Wordscape </h1>
-        <h4> Form as many words as you can! </h4>
+        <h1>
+            <img src="WORDSCAPE%20(1920%20%C3%97%20500%20px).png" style="height:225px;">
+        </h1>
+        <div class="right">
         <div class="Words">
             <div class="Type">
                 Word: 
             </div>
             <div id="showword"></div>
         </div>
+        </div>
         <div class="buttonword">
-            <button id="wordsubmit1" onclick="inputA()" style="border-radius: 50%; position: relative; left: 90px; bottom: 30px; background-color: transparent;"> A </button>
-            <button id="wordsubmit2" onclick="inputB()" style="border-radius: 50%; position: relative; left: 90px; bottom: 150px; background-color: transparent;"> B </button>
-            <button id="wordsubmit3" onclick="inputC()" style="border-radius: 50%; position: relative; left: 90px; bottom: 30px; background-color: transparent;"> C </button>
-            <button id="wordsubmit4" onclick="inputD()" style="border-radius: 50%; position: relative; right:170px; top: 100px; background-color: transparent;"> D </button>
+            <button id="wordsubmit1" onclick="inputA()" style="border-radius: 50%; position: relative; left: 90px; bottom: 30px;"> A </button>
+            <button id="wordsubmit2" onclick="inputB()" style="border-radius: 50%; position: relative; left: 90px; bottom: 150px;"> B </button>
+            <button id="wordsubmit3" onclick="inputC()" style="border-radius: 50%; position: relative; left: 90px; bottom: 30px;"> C </button>
+            <button id="wordsubmit4" onclick="inputD()" style="border-radius: 50%; position: relative; right:170px; top: 100px;"> D </button>
         </div>
         <div class="Words">
+        <div class="right">
             <div class="Type">
                 Score: 
             </div>
             <div id="showscore">
 
             </div>
-        </div>
         <div class="Words">
             <span class="Type">
                 Found: 
@@ -139,6 +180,8 @@
         </button>
         <div class="Type1" id="announcement">
             
+        </div>
+        </div>
         </div>
         <script>
             let score = 0;
