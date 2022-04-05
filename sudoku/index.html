@@ -11,7 +11,8 @@
         <style>
             
             body{
-                background-color: skyblue;
+                background-color: #FDFEFF;
++               display: inline-block;
             }
             
             h1 {
@@ -30,8 +31,26 @@
             
             button, input[type="button"], input[type="submit"] {
                 border-radius: 12px;
-                background-color: aliceblue;
+                background-color: #0060B5;
+                border-color: #0060B5;
+                color:white;
+                padding: 10px;
+                padding-left: 40px;
+                padding-right: 40px;
             }
+            
+            footer{
+				background-color: #0060B5;
+				color: white;
+			}
+			
+			#part1{
+				padding-top: 20px;
+			}
+			
+			#footerhead{
+				font-size: 30px;
+			}
             
         </style>
     </head>
@@ -39,6 +58,7 @@
     <body>
         
         <div class="container">
+            <br><br><br><br><br>
             <h1 id="headinger">SUDOKU</h1>
             
                 <section class="menu w3-animate-right">
@@ -61,6 +81,20 @@
                 </section>
             
         </div>
+        
+        <br><br><br><br><br><br><br><br><br>
+		
+		<footer>
+		<div class="container footer-item" id="part1">
+		<p id="footerhead">Sudoku</p>
+		<p>&copy; 2022 Sudoku. All Rights Reserved.</p>
+		<hr>
+		</div>
+		<div class="container footer-item">
+		<p>Terms Cookie Policy Privacy</p>
+		</div>
+		<br/>
+		</footer>
         
         <script>
             let slideIndex = 1;
