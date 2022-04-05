@@ -1,0 +1,3069 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <title> Sudoku </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">        
+        <link href="http://fonts.cdnfonts.com/css/simple-brush-script" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <style>
+            
+            		body {
+                		margin: 0px;
+               			background-color: #FDFEFF;
+			}
+			
+			nav{
+				background-color: #0060B5;
+				padding:10px;
+				height: 110px;
+			}
+			
+			#navlist{
+				list-style-type:none;
+				margin:0;
+				padding:5px;
+				overflow: hidden;
+			}
+			
+			#home, #mechanics, #about-us{
+				display: inline;
+				float:right;
+				margin-top:10px;
+				margin-bottom:0;
+			}
+            
+			li a {
+				display: block;
+				color: white;
+				text-align: center;
+				padding: 20px 25px;
+				font-size: 15px;
+				text-decoration: none;
+			}
+			
+			li a:hover{
+				background-color:#0074db;
+				border-radius:5px;
+				color:white;
+				text-decoration: none;
+			}
+			
+			a:visited, a:active{
+				text-decoration: none;
+				color:white;
+			}
+				
+			#logo{
+				float:left;
+				display: block;
+				padding:3px;
+				margin-left: 50px;
+				height:100px;
+				width:100px;
+			}
+        
+            
+            table {
+                border: 1px solid black;
+                width: 45vw;
+                margin-top: 2%;
+                margin-left: 2%;
+                float: left;
+                background-color: white;
+            }
+            
+            td {
+                border: 1px solid black;
+                text-align: center;
+                font-size: 4vh;
+                height: 7.8vh;
+                width: 9.5%;
+            }
+            
+            h1 {
+                font-size: 122px;
+                text-align: center;
+            }
+            
+            .nonet-corner-lefttop {
+                border-top: 3px solid black;
+                border-left: 3px solid black;
+            }
+            
+            .nonet-left {
+                border-left: 3px solid black
+            }
+            
+            .nonet-corner-leftbottom {
+                border-left: 3px solid black;
+                border-bottom: 3px solid black;
+            }
+            
+            .nonet-bottom {
+                border-bottom: 3px solid black;
+            }
+            
+            .nonet-corner-rightbottom {
+                border-bottom: 3px solid black;
+                border-right: 3px solid black;
+            }
+            
+            .nonet-right {
+                border-right: 3px solid black;
+            }
+            
+            .nonet-corner-righttop {
+                border-right: 3px solid black;
+                border-top: 3px solid black;
+            }
+            
+            .nonet-top {
+                border-top: 3px solid black;
+            }
+            
+            .menu {
+                margin-top: 2.8%;
+                margin-left: 50vw;
+                display: none;
+            }
+            
+            .MenuButton {
+                margin-top: 1%;
+                margin-bottom: 1%;
+                width: 100%;
+                padding: 2% 0%;
+                font-size: 3.5vh;
+            }
+            
+            .menutable{
+                border: none;
+                width: 60%;
+                padding: 0%;
+                margin: 0%;
+                background-color: transparent;
+            }
+            
+            .menutable td{
+                border: none;
+                padding: 0;
+            }
+            
+            .menutable button {
+                width: 100%;
+                height: 90%;
+                font-size: 8.6vh;
+                border-radius: 5px;
+                background-color: white;
+            }
+            
+            .DifficultyButton {
+                width: 60%;
+                font-size: 4vh;
+                margin-top: 3.5%;
+                text-align: left;
+                padding-left: 6%;
+            }
+            
+            .directionmenu {
+                display: inline-block;
+                width: 50%;
+                margin-left: 0%;
+            }
+            
+            .directionmenu button {
+                width: 100%;
+                border-color: #0060B5;
+                color: white;
+                background-color: #0060B5;
+            }
+            
+            .directionmenu td {
+                border: none;
+                width: 18%;
+                height: auto;
+                padding: 0;
+            }
+            
+            .directionmenu table {
+                border: none;
+                width: auto;
+                height: auto;
+                background-color: transparent;
+            }
+            
+            .system {
+                float: left;
+                width: 100%; 
+            }
+            
+            /*directionmenu, system*/
+            
+            .MenuButtons {
+                margin-top: 1%;
+                margin-bottom: 1%;
+                width: 70%;
+                padding: 2% 0%;
+                font-size: 3.5vh;
+            }
+            
+            .notes {
+                margin-left: 2%;
+            }
+            
+            
+            button {
+                border-radius: 12px;
+                background-color: aliceblue;
+            }
+            
+          footer{
+				background-color: #0060B5;
+				color: white;
+			}
+			
+			#part1{
+				padding-top: 20px;
+			}
+			
+			#footerhead{
+				font-size: 40px;
+			}
+			
+			#terms, #cookie, #priv{
+				display:inline-block;
+				color:white;
+				text-decoration: none;
+			}
+            
+        </style>
+    </head>
+    
+    <body>
+        
+        <header>
+		<a href="index.html"><img src="Sudoku.png" alt="Sudoku" id="logo"></a>
+	</header>
+	
+	<nav>
+		<ul id="navlist">
+		<li id="mechanics"><a href="sudoku_mechanics.html">Mechanics</a></li>
+		<li id="about-us"><a href="about_us.html">About Us</a></li>
+		<li id="home"><a href="index.html">Home</a></li>
+		</ul>
+	</nav>
+        
+        <div>
+        <div class="container">
+            
+            <h1 id="headinger"> SUDOKU </h1>
+            <div class="notes">
+                <p> NOTE: INPUT YOUR ANSWERS AND NAVIGATE USING THE GIVEN BUTTONS OR WITH YOUR KEYBOARD! </p>
+            </div>
+            
+            
+            
+            <table>
+                <tbody>
+                <tr>
+                    <td id="start" class="nonet-corner-lefttop 1"></td>  <!-- All numbers in class represent their place from left to right starting from the top. They are there so as to help javascript check if the selected td has the correct                                                       value  -->
+                    <td class="nonet-top 2"></td>
+                    <td class="nonet-corner-righttop 3"></td>
+                    <td class="nonet-top 4 unremovable">6</td>
+                    <td class="nonet-top 5"></td>
+                    <td class="nonet-corner-righttop 6"></td>
+                    <td class="nonet-corner-lefttop 7 unremovable">4</td>
+                    <td class="nonet-top 8"></td>
+                    <td class="nonet-corner-righttop 9"></td>
+                </tr>
+                <tr>
+                    <td class="nonet-left 10 unremovable">7</td>
+                    <td class="11"></td>
+                    <td class="nonet-right 12"></td>
+                    <td class="nonet-left 13 "></td>
+                    <td class="14"></td>
+                    <td class="nonet-right 15 unremovable">3</td>
+                    <td class="nonet-left 16 unremovable">6</td>
+                    <td class="17"></td>
+                    <td class="nonet-right 18"></td>
+                </tr>
+                <tr>
+                    <td class="nonet-corner-leftbottom 19"></td>
+                    <td class="nonet-bottom 20"></td>
+                    <td class="nonet-corner-rightbottom 21"></td>
+                    <td class="nonet-corner-leftbottom 22"></td>
+                    <td class="nonet-bottom 23 unremovable">9</td>
+                    <td class="nonet-corner-rightbottom 24 unremovable">1</td>
+                    <td class="nonet-corner-leftbottom 25"></td>
+                    <td class="nonet-bottom 26">8</td>
+                    <td class="nonet-corner-rightbottom 27"></td>
+                </tr>
+                <tr>
+                    <td class="nonet-corner-lefttop 28"></td>
+                    <td class="nonet-top 29"></td>
+                    <td class="nonet-corner-righttop 30"></td>
+                    <td class="nonet-corner-lefttop 31"></td>
+                    <td class="nonet-top 32"></td>
+                    <td class="nonet-corner-righttop 33"></td>
+                    <td class="nonet-corner-lefttop 34"></td>
+                    <td class="nonet-top 35"></td>
+                    <td class="nonet-corner-righttop 36"></td>
+                </tr>
+                <tr>
+                    <td class="nonet-left 37"></td>
+                    <td class="38">5</td>
+                    <td class="nonet-right 39"></td>
+                    <td class="nonet-left 40 unremovable">1</td>
+                    <td class="41 unremovable">8</td>
+                    <td class="nonet-right 42 "></td>
+                    <td class="nonet-left 43 "></td>
+                    <td class="44"></td>
+                    <td class="nonet-right 45 unremovable">3</td>
+                </tr>
+                <tr>
+                    <td class="nonet-corner-leftbottom 46"></td>
+                    <td class="nonet-bottom 47"></td>
+                    <td class="nonet-corner-rightbottom 48"></td>
+                    <td class="nonet-corner-leftbottom 49 unremovable">3</td>
+                    <td class="nonet-bottom 50 "></td>
+                    <td class="nonet-corner-rightbottom 51 unremovable">6</td>
+                    <td class="nonet-corner-leftbottom 52"></td>
+                    <td class="nonet-bottom 53 unremovable">4</td>
+                    <td class="nonet-corner-rightbottom 54 unremovable">5</td>
+                </tr>
+                <tr>
+                    <td class="nonet-corner-lefttop 55"></td>
+                    <td class="nonet-top 56 unremovable">4</td>
+                    <td class="nonet-corner-righttop 57"></td>
+                    <td class="nonet-corner-lefttop 58 unremovable">2</td>
+                    <td class="nonet-top 59"></td>
+                    <td class="nonet-corner-righttop 60"></td>
+                    <td class="nonet-corner-lefttop 61"></td>
+                    <td class="nonet-top 62 unremovable">6</td>
+                    <td class="nonet-corner-righttop 63"></td>
+                </tr>
+                <tr>
+                    <td class="nonet-left 64 unremovable">9</td>
+                    <td class="65"></td>
+                    <td class="nonet-right 66 unremovable">3</td>
+                    <td class="nonet-left 67"></td>
+                    <td class="68"></td>
+                    <td class="nonet-right 69"></td>
+                    <td class="nonet-left 70"></td>
+                    <td class="71"></td>
+                    <td class="nonet-right 72"></td>
+                </tr>
+                <tr>
+                    <td class="nonet-corner-leftbottom 73"></td>
+                    <td class="nonet-bottom 74 unremovable">2</td>
+                    <td class="nonet-corner-rightbottom 75"></td>
+                    <td class="nonet-corner-leftbottom 76"></td>
+                    <td class="nonet-bottom 77"></td>
+                    <td class="nonet-corner-rightbottom 78"></td>
+                    <td class="nonet-corner-leftbottom 79 unremovable">1</td>
+                    <td class="nonet-bottom 80"></td>
+                    <td class="nonet-corner-rightbottom 81"></td>
+                </tr>
+                </tbody>
+            </table>
+            
+            
+            
+            <section class="menu w3-animate-right">
+                <div class="system">
+                    <button id="NewGame" class="MenuButton" onclick="plusSlides(1)" style="width:30%; font-size:24px; height:60px;"> &#8634; </button>
+                    <button id="Restart" class="MenuButton, glyphicon glyphicon-erase" onclick="clearcell()" style="font-size:20px; width:30%; height:60px;"></button>
+                    <button id="Restart" class="MenuButton" onclick="submit()" style="font-size:25px; width:30%; height:60px;"> SUBMIT </button>
+                </div>
+            
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <div class="pages">
+                    
+                    
+                    
+                    <table class="menutable">
+                        <br/>
+                        <tr>
+                            <td>
+                                <button onclick="input1()"> 1 </button>
+                            </td>
+                            <td>
+                                <button onclick="input2()"> 2 </button>
+                            </td>
+                            <td>
+                                <button onclick="input3()"> 3 </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button onclick="input4()"> 4 </button>
+                            </td>
+                            <td>
+                                <button onclick="input5()"> 5 </button>
+                            </td>
+                            <td>
+                                <button onclick="input6()"> 6 </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button onclick="input7()"> 7 </button>
+                            </td>
+                            <td>
+                                <button onclick="input8()"> 8 </button>
+                            </td>
+                            <td>
+                                <button onclick="input9()"> 9 </button>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    
+                    
+                </div>
+                
+                
+                
+                
+                <div class="directionmenu" style="border-collapse: collapse; border-spacing: 0; text-align:center;">
+                    <table>
+                        <tr>
+                            <td><button style="pointer-events:none; border: none; background: none;"></button></td>
+                            <td onclick="upkey()"><button class="material-icons" style="height:45px; width:3.5vw;"> &#xe5d8; </button></td>
+                        </tr>
+                        <tr>
+                            <td><button onclick="leftkey()" class="material-icons" style="height:45px;  width:3.5vw;"> &#xe5c4; </button></td>
+                            <td onclick="downkey()"><button class="material-icons" style="height:45px;  width:3.5vw;"> &#xe5db; </button></td>
+                            <td><button onclick="rightkey()" class="material-icons" style="height:45px;  width:3.5vw;"> &#xe5c8;</button></td>
+                        </tr>
+                    </table>
+                </div>
+                
+                
+                
+                
+                
+            </section>
+            
+            <section class="menu w3-animate-right">
+                <div>
+                    <button id="NewGame" class="MenuButtons" onclick="plusSlides(-1)"> RETURN </button>
+                    <button id="Restart" class="MenuButtons" onclick="document.location.reload(true)"> RESTART </button>
+                </div>
+                <div class="pages">
+                    <button class="DifficultyButton"> EASY </button>
+                    <button class="DifficultyButton"> MEDIUM </button>
+                    <button class="DifficultyButton"> HARD </button>
+                    <button class="DifficultyButton"> INSANE </button>
+                </div>
+            </section>
+            
+        </div>
+        </div>
+        <br><br> 
+		
+	<br/>
+   	<footer>
+		<div class="container footer-item" id="part1">
+		<p id="footerhead">Sudoku</p>
+		<p>&copy; 2022 Sudoku. All Rights Reserved.</p>
+		<hr>
+		</div>
+		<div class="container footer-item" id="part2">
+		<a href="#" id="terms">Terms</a>&nbsp; &nbsp; &nbsp;
+		<a href="#" id="cookie">Cookie Policy</a>&nbsp; &nbsp; &nbsp;
+		<a href="#" id="priv">Privacy</a>
+		</div>
+		
+		<br/>
+	</footer>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        <script>
+            let slideIndex = 1;
+            showSlides(slideIndex);
+
+            function plusSlides(n) {
+                showSlides(slideIndex += n);
+            }
+
+            function currentSlide(n) {
+                showSlides(slideIndex = n);
+            }
+
+            function showSlides(n) {
+                let i;
+                let slides = document.getElementsByClassName("menu");
+                let dots = document.getElementsByClassName("dot");
+                if (n > slides.length) {slideIndex = 1}    
+                if (n < 1) {slideIndex = slides.length}
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";  
+                }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideIndex-1].style.display = "block";  
+                dots[slideIndex-1].className += " active";
+            }
+        </script>
+        <script>
+            var start = document.getElementById("start");
+            start.focus();
+            start.style.backgroundColor = 'green';
+            start.style.color = 'white';
+
+            function dotheneedful(sibling) {
+                if (sibling != null) {
+                    start.focus();
+                    start.style.backgroundColor = '';
+                    start.style.color = '';
+                    start.removeAttribute('id');
+                    sibling.focus();
+                    sibling.style.backgroundColor = 'green';
+                    sibling.style.color = 'white';
+                    sibling.setAttribute('id','start')
+                    start = sibling;
+                }
+            }
+
+            document.onkeydown = checkKey;
+
+            function checkKey(e) {
+                e = e || window.event;
+                if (e.keyCode == '38') {
+                    // up arrow
+                    var idx = start.cellIndex;
+                    var nextrow = start.parentElement.previousElementSibling;
+                    if (nextrow != null) {
+                        var sibling = nextrow.cells[idx];
+                        dotheneedful(sibling);
+                    }
+                    
+                } else if (e.keyCode == '40') {
+                    // down arrow
+                    var idx = start.cellIndex;
+                    var nextrow = start.parentElement.nextElementSibling;
+                    if (nextrow != null) {
+                        var sibling = nextrow.cells[idx];
+                        dotheneedful(sibling);
+                    }
+                } else if (e.keyCode == '37') {
+                    // left arrow
+                    var sibling = start.previousElementSibling;
+                    dotheneedful(sibling);
+                } else if (e.keyCode == '39') {
+                    // right arrow
+                    var sibling = start.nextElementSibling;
+                    dotheneedful(sibling);
+                }
+            }
+            
+            function upkey() {
+                var idx = start.cellIndex;
+                var nextrow = start.parentElement.previousElementSibling;
+                if (nextrow != null) {
+                    var sibling = nextrow.cells[idx];
+                    dotheneedful(sibling);
+                }
+            }
+            
+            function rightkey() {
+                var sibling = start.nextElementSibling;
+                dotheneedful(sibling);
+            }
+            
+            function downkey() {
+                var idx = start.cellIndex;
+                var nextrow = start.parentElement.nextElementSibling;
+                if (nextrow != null) {
+                    var sibling = nextrow.cells[idx];
+                    dotheneedful(sibling);
+                }
+            }
+            
+            function leftkey() {
+                var sibling = start.previousElementSibling;
+                dotheneedful(sibling);
+            }
+            
+            var point = 36;
+            
+            function input1() {
+                const value = document.getElementById("start");
+                if (  value.classList.contains("unremovable") ) {
+                    return;
+                } else {
+                    document.getElementById("start").innerHTML = "1";
+                    const numvalue = document.getElementById("start").innerHTML;
+                        if ( value.classList.contains("1") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("2") && numvalue == "8" ) {        //the value.classList.contains("num") checks if the selected td contains the number it wishes to check and compares if the innerHTML has the correct                                                                          value inside. all class num go from left to right starting from the top with the top left being 1 and the bottom right being 81. Each "else if"                                                                            must have the correct num in order to correctly check in the correct td whether or not the value inputted is correct.
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("3") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("5") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("6") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("8") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("9") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("11") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("12") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("13") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("14") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("17") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("18") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("19") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("20") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("21") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("22") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("25") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("27") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("28") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("29") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("30") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("31") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("32") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("33") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("34") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("35") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("36") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("37") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("39") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("42") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("43") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("44") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("46") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("47") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("48") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("50") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("52") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("55") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("57") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("59") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("60") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("61") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("63") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("65") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("67") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("68") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("69") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("70") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("71") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("72") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("73") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("75") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("76") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("77") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("78") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("80") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("81") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else {
+                            value.classList.remove("correct");
+                        }
+                }
+            }
+            function input2() {
+                const value = document.getElementById("start");
+                if (  value.classList.contains("unremovable") ) {
+                    return;
+                } else {
+                    document.getElementById("start").innerHTML = "2";
+                    const numvalue = document.getElementById("start").innerHTML;
+                        if ( value.classList.contains("1") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("2") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("3") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("5") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("6") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("8") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("9") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("11") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("12") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("13") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("14") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("17") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("18") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("19") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("20") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("21") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("22") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("25") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("27") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("28") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("29") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("30") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("31") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("32") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("33") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("34") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("35") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("36") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("37") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("39") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("42") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("43") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("44") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("46") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("47") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("48") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("50") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("52") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("55") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("57") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("59") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("60") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("61") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("63") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("65") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("67") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("68") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("69") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("70") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("71") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("72") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("73") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("75") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("76") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("77") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("78") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("80") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("81") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else {
+                            value.classList.remove("correct");
+                        }
+                }
+            }
+            function input3() {
+                const value = document.getElementById("start");
+                if (  value.classList.contains("unremovable") ) {
+                    return;
+                } else {
+                    document.getElementById("start").innerHTML = "3";
+                    const numvalue = document.getElementById("start").innerHTML;
+                    if ( value.classList.contains("1") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("2") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("3") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("5") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("6") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("8") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("9") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("11") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("12") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("13") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("14") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("17") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("18") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("19") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("20") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("21") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("22") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("25") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("27") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("28") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("29") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("30") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("31") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("32") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("33") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("34") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("35") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("36") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("37") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("39") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("42") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("43") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("44") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("46") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("47") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("48") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("50") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("52") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("55") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("57") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("59") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("60") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("61") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("63") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("65") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("67") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("68") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("69") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("70") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("71") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("72") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("73") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("75") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("76") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("77") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("78") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("80") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("81") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else {
+                            value.classList.remove("correct");
+                        }
+                }
+            }
+            
+            function input4() {
+                const value = document.getElementById("start");
+                if (  value.classList.contains("unremovable") ) {
+                    return;
+                } else {
+                    document.getElementById("start").innerHTML = "4";
+                    const numvalue = document.getElementById("start").innerHTML;
+                    if ( value.classList.contains("1") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("2") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("3") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("5") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("6") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("8") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("9") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("11") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("12") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("13") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("14") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("17") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("18") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("19") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("20") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("21") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("22") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("25") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("27") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("28") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("29") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("30") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("31") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("32") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("33") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("34") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("35") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("36") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("37") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("39") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("42") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("43") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("44") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("46") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("47") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("48") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("50") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("52") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("55") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("57") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("59") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("60") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("61") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("63") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("65") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("67") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("68") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("69") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("70") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("71") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("72") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("73") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("75") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("76") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("77") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("78") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("80") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("81") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else {
+                            value.classList.remove("correct");
+                        }
+                }
+            }
+            
+            function input5() {
+                const value = document.getElementById("start");
+                if (  value.classList.contains("unremovable") ) {
+                    return;
+                } else {
+                    document.getElementById("start").innerHTML = "5";
+                    const numvalue = document.getElementById("start").innerHTML;
+                    if ( value.classList.contains("1") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("2") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("3") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("5") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("6") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("8") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("9") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("11") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("12") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("13") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("14") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("17") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("18") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("19") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("20") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("21") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("22") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("25") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("27") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("28") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("29") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("30") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("31") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("32") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("33") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("34") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("35") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("36") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("37") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("39") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("42") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("43") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("44") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("46") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("47") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("48") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("50") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("52") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("55") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("57") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("59") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("60") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("61") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("63") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("65") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("67") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("68") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("69") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("70") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("71") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("72") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("73") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("75") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("76") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("77") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("78") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("80") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("81") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else {
+                            value.classList.remove("correct");
+                        }
+                }
+            }
+            function input6() {
+                const value = document.getElementById("start");
+                if (  value.classList.contains("unremovable") ) {
+                    return;
+                } else {
+                    document.getElementById("start").innerHTML = "6";
+                    const numvalue = document.getElementById("start").innerHTML;
+                    if ( value.classList.contains("1") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("2") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("3") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("5") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("6") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("8") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("9") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("11") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("12") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("13") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("14") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("17") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("18") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("19") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("20") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("21") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("22") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("25") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("27") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("28") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("29") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("30") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("31") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("32") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("33") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("34") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("35") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("36") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("37") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("39") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("42") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("43") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("44") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("46") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("47") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("48") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("50") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("52") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("55") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("57") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("59") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("60") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("61") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("63") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("65") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("67") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("68") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("69") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("70") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("71") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("72") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("73") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("75") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("76") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("77") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("78") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("80") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("81") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else {
+                            value.classList.remove("correct");
+                        }
+                }
+            }
+            
+            function input7() {
+                const value = document.getElementById("start");
+                if (  value.classList.contains("unremovable") ) {
+                    return;
+                } else {
+                    document.getElementById("start").innerHTML = "7";
+                    const numvalue = document.getElementById("start").innerHTML;
+                    if ( value.classList.contains("1") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("2") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("3") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("5") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("6") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("8") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("9") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("11") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("12") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("13") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("14") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("17") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("18") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("19") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("20") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("21") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("22") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("25") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("27") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("28") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("29") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("30") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("31") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("32") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("33") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("34") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("35") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("36") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("37") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("39") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("42") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("43") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("44") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("46") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("47") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("48") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("50") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("52") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("55") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("57") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("59") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("60") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("61") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("63") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("65") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("67") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("68") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("69") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("70") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("71") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("72") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("73") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("75") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("76") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("77") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("78") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("80") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("81") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else {
+                            value.classList.remove("correct");
+                        }
+                }
+            }
+            
+            function input8() {
+                const value = document.getElementById("start");
+                if (  value.classList.contains("unremovable") ) {
+                    return;
+                } else {
+                    document.getElementById("start").innerHTML = "8";
+                    const numvalue = document.getElementById("start").innerHTML;
+                    if ( value.classList.contains("1") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("2") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("3") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("4") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("8") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("12") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("13") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("15") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("16") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("18") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("21") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("22") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("23") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("26") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("27") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("30") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("32") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("33") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("34") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("36") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("37") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("38") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("41") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("44") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("45") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("46") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("48") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("49") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("50") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("52") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("55") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("56") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("59") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("60") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("61") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("64") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("66") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("67") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("69") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("70") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("74") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("76") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("79") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("80") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("81") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        
+                            
+                            
+                        } else if (value.classList.contains("83") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("85") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("89") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("91") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("92") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("95") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("99") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("100") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("102") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("105") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("107") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("110") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else if (value.classList.contains("113") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                            point = point + 1;
+                        } else {
+                            value.classList.remove("correct");
+                            point = point - 1;
+                        }
+                }
+            }
+            
+            function input9() {
+                const value = document.getElementById("start");
+                if (  value.classList.contains("unremovable") ) {
+                    return;
+                } else {
+                    document.getElementById("start").innerHTML = "9";
+                    const numvalue = document.getElementById("start").innerHTML;
+                    if ( value.classList.contains("1") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("2") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("3") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("5") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("6") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("8") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("9") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("11") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("12") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("13") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("14") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("17") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("18") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("19") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("20") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("21") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("22") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("25") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("27") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("28") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("29") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("30") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("31") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("32") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("33") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("34") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("35") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("36") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("37") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("39") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("42") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("43") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("44") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("46") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("47") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("48") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("50") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("52") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("55") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("57") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("59") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("60") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("61") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("63") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("65") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("67") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("68") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("69") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("70") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("71") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("72") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("73") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("75") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("76") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("77") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("78") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("80") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("81") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else {
+                            value.classList.remove("correct");
+                        }
+                        
+                        
+                }
+            }
+            
+            function clearcell() {
+                const value = document.getElementById("start");
+                if (  value.classList.contains("unremovable") ) {
+                    return;
+                } else {
+                    document.getElementById("start").innerHTML = "";
+                    value.classList.remove("correct");
+                    point = point - 1;
+                }
+            }
+            
+            document.addEventListener('keydown', function(event) {
+                if(event.keyCode == 49 || event.keyCode == 97) {
+                    const value = document.getElementById("start");
+                    if (  value.classList.contains("unremovable") ) {
+                        return;
+                    } else {
+                        document.getElementById("start").innerHTML = "1";
+                        const numvalue = document.getElementById("start").innerHTML;
+                        if ( value.classList.contains("1") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("2") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("3") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("5") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("6") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("8") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("9") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("11") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("12") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("13") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("14") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("17") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("18") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("19") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("20") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("21") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("22") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("25") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("27") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("28") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("29") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("30") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("31") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("32") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("33") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("34") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("35") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("36") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("37") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("39") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("42") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("43") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("44") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("46") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("47") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("48") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("50") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("52") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("55") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("57") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("59") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("60") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("61") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("63") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("65") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("67") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("68") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("69") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("70") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("71") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("72") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("73") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("75") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("76") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("77") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("78") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("80") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("81") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else {
+                            value.classList.remove("correct");
+                        }
+                    }
+                }
+                else if(event.keyCode == 50 || event.keyCode == 98) {
+                    const value = document.getElementById("start");
+                    if (  value.classList.contains("unremovable") ) {
+                        return;
+                    } else {
+                        document.getElementById("start").innerHTML = "2";
+                        const numvalue = document.getElementById("start").innerHTML;
+                       if ( value.classList.contains("1") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("2") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("3") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("5") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("6") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("8") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("9") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("11") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("12") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("13") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("14") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("17") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("18") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("19") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("20") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("21") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("22") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("25") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("27") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("28") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("29") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("30") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("31") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("32") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("33") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("34") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("35") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("36") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("37") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("39") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("42") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("43") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("44") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("46") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("47") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("48") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("50") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("52") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("55") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("57") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("59") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("60") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("61") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("63") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("65") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("67") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("68") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("69") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("70") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("71") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("72") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("73") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("75") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("76") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("77") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("78") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("80") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("81") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else {
+                            value.classList.remove("correct");
+                        }
+                    }
+                }
+                else if(event.keyCode == 51 || event.keyCode == 99) {
+                    const value = document.getElementById("start");
+                    if (  value.classList.contains("unremovable") ) {
+                        return;
+                    } else {
+                        document.getElementById("start").innerHTML = "3";
+                        const numvalue = document.getElementById("start").innerHTML;
+                        if ( value.classList.contains("1") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("2") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("3") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("5") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("6") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("8") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("9") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("11") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("12") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("13") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("14") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("17") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("18") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("19") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("20") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("21") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("22") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("25") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("27") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("28") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("29") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("30") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("31") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("32") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("33") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("34") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("35") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("36") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("37") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("39") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("42") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("43") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("44") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("46") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("47") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("48") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("50") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("52") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("55") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("57") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("59") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("60") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("61") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("63") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("65") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("67") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("68") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("69") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("70") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("71") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("72") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("73") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("75") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("76") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("77") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("78") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("80") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("81") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else {
+                            value.classList.remove("correct");
+                        }
+                    }
+                }
+                
+                else if(event.keyCode == 52 || event.keyCode == 100) {
+                    const value = document.getElementById("start");
+                    if (  value.classList.contains("unremovable") ) {
+                        return;
+                    } else {
+                        document.getElementById("start").innerHTML = "4";
+                        const numvalue = document.getElementById("start").innerHTML;
+                        if ( value.classList.contains("1") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("2") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("3") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("5") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("6") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("8") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("9") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("11") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("12") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("13") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("14") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("17") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("18") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("19") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("20") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("21") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("22") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("25") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("27") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("28") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("29") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("30") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("31") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("32") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("33") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("34") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("35") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("36") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("37") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("39") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("42") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("43") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("44") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("46") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("47") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("48") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("50") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("52") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("55") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("57") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("59") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("60") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("61") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("63") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("65") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("67") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("68") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("69") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("70") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("71") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("72") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("73") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("75") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("76") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("77") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("78") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("80") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("81") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else {
+                            value.classList.remove("correct");
+                        }
+                    }
+                }
+                
+                else if(event.keyCode == 53 || event.keyCode == 101) {
+                    const value = document.getElementById("start");
+                    if (  value.classList.contains("unremovable") ) {
+                        return;
+                    } else {
+                        document.getElementById("start").innerHTML = "5";
+                        const numvalue = document.getElementById("start").innerHTML;
+                        if ( value.classList.contains("1") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("2") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("3") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("5") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("6") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("8") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("9") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("11") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("12") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("13") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("14") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("17") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("18") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("19") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("20") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("21") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("22") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("25") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("27") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("28") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("29") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("30") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("31") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("32") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("33") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("34") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("35") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("36") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("37") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("39") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("42") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("43") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("44") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("46") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("47") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("48") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("50") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("52") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("55") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("57") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("59") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("60") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("61") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("63") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("65") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("67") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("68") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("69") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("70") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("71") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("72") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("73") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("75") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("76") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("77") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("78") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("80") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("81") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else {
+                            value.classList.remove("correct");
+                        }
+                    }
+                }
+                else if(event.keyCode == 54 || event.keyCode == 102) {
+                    const value = document.getElementById("start");
+                    if (  value.classList.contains("unremovable") ) {
+                        return;
+                    } else {
+                        document.getElementById("start").innerHTML = "6";
+                        const numvalue = document.getElementById("start").innerHTML;
+                        if ( value.classList.contains("1") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("2") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("3") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("5") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("6") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("8") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("9") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("11") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("12") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("13") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("14") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("17") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("18") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("19") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("20") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("21") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("22") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("25") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("27") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("28") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("29") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("30") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("31") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("32") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("33") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("34") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("35") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("36") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("37") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("39") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("42") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("43") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("44") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("46") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("47") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("48") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("50") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("52") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("55") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("57") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("59") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("60") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("61") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("63") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("65") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("67") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("68") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("69") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("70") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("71") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("72") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("73") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("75") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("76") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("77") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("78") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("80") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("81") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else {
+                            value.classList.remove("correct");
+                        }
+                    }
+                }
+                else if(event.keyCode == 55 || event.keyCode == 103) {
+                    const value = document.getElementById("start");
+                    if (  value.classList.contains("unremovable") ) {
+                        return;
+                    } else {
+                        document.getElementById("start").innerHTML = "7";
+                        const numvalue = document.getElementById("start").innerHTML;
+                        if ( value.classList.contains("1") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("2") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("3") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("5") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("6") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("8") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("9") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("11") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("12") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("13") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("14") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("17") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("18") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("19") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("20") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("21") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("22") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("25") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("27") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("28") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("29") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("30") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("31") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("32") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("33") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("34") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("35") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("36") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("37") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("39") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("42") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("43") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("44") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("46") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("47") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("48") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("50") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("52") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("55") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("57") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("59") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("60") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("61") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("63") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("65") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("67") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("68") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("69") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("70") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("71") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("72") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("73") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("75") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("76") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("77") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("78") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("80") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("81") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else {
+                            value.classList.remove("correct");
+                        }
+                    }
+                }
+                else if(event.keyCode == 56 || event.keyCode == 104) {
+                    const value = document.getElementById("start");
+                    if (  value.classList.contains("unremovable") ) {
+                        return;
+                    } else {
+                        document.getElementById("start").innerHTML = "8";
+                        const numvalue = document.getElementById("start").innerHTML;
+                        if ( value.classList.contains("1") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("2") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("3") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("5") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("6") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("8") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("9") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("11") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("12") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("13") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("14") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("17") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("18") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("19") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("20") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("21") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("22") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("25") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("27") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("28") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("29") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("30") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("31") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("32") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("33") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("34") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("35") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("36") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("37") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("39") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("42") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("43") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("44") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("46") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("47") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("48") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("50") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("52") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("55") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("57") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("59") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("60") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("61") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("63") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("65") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("67") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("68") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("69") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("70") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("71") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("72") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("73") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("75") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("76") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("77") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("78") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("80") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("81") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else {
+                            value.classList.remove("correct");
+                        }
+                    }
+                }
+                else if(event.keyCode == 57 || event.keyCode == 105) {
+                    const value = document.getElementById("start");
+                    if (  value.classList.contains("unremovable") ) {
+                        return;
+                    } else {
+                        document.getElementById("start").innerHTML = "9";
+                        const numvalue = document.getElementById("start").innerHTML;
+                        if ( value.classList.contains("1") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("2") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("3") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("5") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("6") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("8") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("9") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("11") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("12") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("13") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("14") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("17") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("18") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("19") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("20") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("21") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("22") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("25") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("27") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("28") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("29") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("30") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("31") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("32") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("33") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("34") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("35") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("36") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("37") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("39") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("42") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("43") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("44") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("46") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("47") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("48") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("50") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("52") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("55") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("57") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("59") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("60") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("61") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("63") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("65") && numvalue == "1" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("67") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("68") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("69") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("70") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("71") && numvalue == "2" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("72") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("73") && numvalue == "6" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("75") && numvalue == "7" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("76") && numvalue == "4" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("77") && numvalue == "3" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("78") && numvalue == "5" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("80") && numvalue == "9" ) {
+                            value.classList.add("correct");
+                        } else if (value.classList.contains("81") && numvalue == "8" ) {
+                            value.classList.add("correct");
+                        } else {
+                            value.classList.remove("correct");
+                        }
+                    }
+                }
+                else if(event.keyCode == 8 || event.keyCode == 46 || event.keyCode == 110) {
+                    const value = document.getElementById("start");
+                    if (  value.classList.contains("unremovable") ) {
+                        return;
+                    } else {
+                        document.getElementById("start").innerHTML = "";
+                        value.classList.remove("correct");
+                    }
+                }
+            });
+            
+            function submit() {
+                var values = document.getElementsByClassName("correct").length;
+                if (values == 58) {              //change the number to the amount of numbers that should be correctly guessed.
+                    alert("YOU HAVE WON THE GAME!");
+                } else {
+                    alert("UH OH! TRY AGAIN!");
+                }
+            }
+            
+        </script>
+    </body>
+</html>
