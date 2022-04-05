@@ -18,26 +18,33 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <style>
             
-            body {
-                margin: 0px;
-                background-color: #FDFEFF;
-            }
-            
-            	 	nav{
-				background-color: #0060B5;
-				padding:10px;
+           		 body {
+				margin:0;
+				position: relative;
+				min-height: 100%;
+				min-height: 100vh;
+		    		margin: 0px;
+                		background-color: #FDFEFF;
 			}
 			
-			ul{
+			nav{
+				background-color: #0060B5;
+				padding:10px;
+				height: 110px;
+			}
+			
+			#navlist{
 				list-style-type:none;
 				margin:0;
-				padding:10;
+				padding:5px;
 				overflow: hidden;
 			}
 			
-			li{
+			#home, #mechanics, #about-us{
 				display: inline;
 				float:right;
+				margin-top:10px;
+				margin-bottom:0;
 			}
             
 			li a {
@@ -64,12 +71,12 @@
 			#logo{
 				float:left;
 				display: block;
-				color: white;
-				text-align: center;
-				padding: 20px 25px;
-				font-size: 15px;
-				text-decoration: none;
+				padding:3px;
+				margin-left: 50px;
+				height:100px;
+				width:100px;
 			}
+        
             
             table {
                 border: 1px solid black;
@@ -228,8 +235,10 @@
             }
             
             footer{
-				background-color:#0060B5;
+				background-color: #0060B5;
 				color: white;
+				position: absolute;
+				right: 0;bottom:0;left:0;
 			}
 			
 			#part1{
@@ -237,23 +246,34 @@
 			}
 			
 			#footerhead{
-				font-size: 30px;
+				font-size: 40px;
 			}
-            
+
+			#part2{
+				white-space:nowrap;
+			}
+			
+			#terms, #cookie, #priv{
+				display:inline-block;
+				color:white;
+				text-decoration: none;
+			}
         </style>
     </head>
     
     <body>
         
-        <nav>
-		<ul>
-		<li><a href="#">Levels</a></li>
-		<li><a href="sudoku_mechanics.html">Mechanics</a></li>
-		<li><a href="#">About Us</a></li>
-		<li><a href="index.html">Home</a></li>
-		<a href="index.html" id="logo">Logo</a>
+       <header>
+		<a href="index.html"><img src="Sudoku.png" alt="Sudoku" id="logo"></a>
+	</header>
+	
+	<nav>
+		<ul id="navlist">
+		<li id="mechanics"><a href="sudoku_mechanics.html">Mechanics</a></li>
+		<li id="about-us"><a href="about_us.html">About Us</a></li>
+		<li id="home"><a href="index.html">Home</a></li>
 		</ul>
-		</nav>
+	</nav>
         
         <div>
         <div class="container">
@@ -502,19 +522,21 @@
         </div>
         <br><br> 
 		
-		<footer>
+	<br/>
+    	<footer>
 		<div class="container footer-item" id="part1">
 		<p id="footerhead">Sudoku</p>
 		<p>&copy; 2022 Sudoku. All Rights Reserved.</p>
 		<hr>
 		</div>
-		<div class="container footer-item">
-		<p>Terms Cookie Policy Privacy</p>
+		<div class="container footer-item" id="part2">
+		<a href="#" id="terms">Terms</a>&nbsp; &nbsp; &nbsp;
+		<a href="#" id="cookie">Cookie Policy</a>&nbsp; &nbsp; &nbsp;
+		<a href="#" id="priv">Privacy</a>
 		</div>
 		
-		
-		</footer>
-            
+	<br/>
+	</footer>
             
             
             
