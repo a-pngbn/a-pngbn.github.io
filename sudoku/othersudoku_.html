@@ -23,6 +23,54 @@
                 background-color: skyblue;
             }
             
+            nav{
+				background-color: #808184;
+				padding:10px;
+			}
+			
+			ul{
+				list-style-type:none;
+				margin:0;
+				padding:10;
+				overflow: hidden;
+			}
+			
+			li{
+				display: inline;
+				float:right;
+			}
+            
+			li a {
+				display: block;
+				color: white;
+				text-align: center;
+				padding: 20px 25px;
+				font-size: 15px;
+				text-decoration: none;
+			}
+			
+			li a:hover{
+				background-color:#ADADAD;
+				border-radius:5px;
+				color:white;
+				text-decoration: none;
+			}
+			
+			a:visited, a:active{
+				text-decoration: none;
+				color:white;
+			}
+				
+			#logo{
+				float:left;
+				display: block;
+				color: white;
+				text-align: center;
+				padding: 20px 25px;
+				font-size: 15px;
+				text-decoration: none;
+			}
+            
             table {
                 border: 1px solid black;
                 width: 45vw;
@@ -177,10 +225,34 @@
                 background-color: aliceblue;
             }
             
+            footer{
+				background-color:#808184;
+				color: white;
+			}
+			
+			#part1{
+				padding-top: 20px;
+			}
+			
+			#footerhead{
+				font-size: 30px;
+			}
+            
         </style>
     </head>
     
     <body>
+        
+        <nav>
+		<ul>
+		<li><a href="#">Levels</a></li>
+		<li><a href="#">Mechanics</a></li>
+		<li><a href="#">About Us</a></li>
+		<li><a href="#">Home</a></li>
+		<a href="#" id="logo">Logo</a>
+		</ul>
+		</nav>
+        
         <div>
         <div class="container">
             
@@ -426,6 +498,20 @@
             
         </div>
         </div>
+        <br><br> 
+		
+		<footer>
+		<div class="container footer-item" id="part1">
+		<p id="footerhead">Sudoku</p>
+		<p>&copy; 2022 Sudoku. All Rights Reserved.</p>
+		<hr>
+		</div>
+		<div class="container footer-item">
+		<p>Terms Cookie Policy Privacy</p>
+		</div>
+		
+		
+		</footer>
             
             
             
